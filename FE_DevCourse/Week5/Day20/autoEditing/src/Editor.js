@@ -16,6 +16,9 @@ export default function Editor({
   //render함수가 할 일이 생김
   this.setState = (nextState) => {
     this.state = nextState;
+    $editor.querySelector("[name=title]").value = this.state.title;
+    $editor.querySelector("[name=content]").value = this.state.content;
+
     this.render();
   };
 
