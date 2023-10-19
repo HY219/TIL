@@ -77,10 +77,26 @@ export default function PostEditPage({ $target, initialState }) {
   //new가 아닐 경우.
   const fetchPost = async () => {
     const { postId } = this.state;
+
     //새로 값을 추가하는 경우
     //방어코드로
     if (postId !== "new") {
       const post = await request(`./posts/${postId}`);
+
+      const tempPost = getItem(postLocalSaveKey, {
+        title: "",
+        content: "",
+      });
+      console.log(tempPost);
+
+      //tempSaveDate => 최근 수정 시간
+      //tempSaveDate가 있는 경우 && tempSaveDate가 post가 없데이트된 시간보다 클 경우
+      if (tempPost.tempSaveDate && tempPost.tempSaveDate > post.updated_at) {
+        if (confirm("저장되지 않은 임시 데이터가 있습니다. 불러올까요?")) {
+          this.setState({ ...this.state, post: tempPost });
+          return;
+        }
+      }
 
       this.setState({
         ...this.state,
