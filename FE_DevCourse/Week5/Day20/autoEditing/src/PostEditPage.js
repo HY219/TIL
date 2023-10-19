@@ -46,7 +46,7 @@ export default function PostEditPage({ $target, initialState }) {
   //setState가 일어나면, fetchPost()를하고
   //fetchPost에서 render를 호출하도록 함
   this.setState = async (nextState) => {
-    console.log(this.state.postId, nextState.postId);
+    // console.log(this.state.postId, nextState.postId);
     if (this.state.postId !== nextState.postId) {
       this.state = nextState;
       await fetchPost();
@@ -56,7 +56,7 @@ export default function PostEditPage({ $target, initialState }) {
     this.state = nextState;
     this.render();
 
-    console.log(this.state.post);
+    // console.log(this.state.post);
     editor.setState(this.state.post);
   };
 

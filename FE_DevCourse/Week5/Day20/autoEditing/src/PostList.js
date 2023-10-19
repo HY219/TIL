@@ -3,8 +3,8 @@ export default function PostList({ $target, initialState, onPostClick }) {
   $target.appendChild($postList);
 
   this.state = initialState;
-  console.log(this.state);
-  console.log(this.state.map((post) => post.id));
+  // console.log(this.state);
+  // console.log(this.state.map((post) => post.id));
 
   this.setState = (nextState) => {
     this.state = nextState;

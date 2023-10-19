@@ -1,18 +1,20 @@
-import PostEditPage from "./PostEditPage.js";
+import App from "./App.js";
+//main에서 App컴포넌트 부르기
+// import PostEditPage from "./PostEditPage.js";
 const $target = document.querySelector("#app");
 
-// new App({ $target });
+new App({ $target });
 
-const postEditPage = new PostEditPage({
-  $target,
-  initialState: {
-    postId: "new",
-  },
-});
+// const postEditPage = new PostEditPage({
+//   $target,
+//   initialState: {
+//     postId: "new",
+//   },
+// });
 
-postEditPage.setState({
-  postId: 2,
-});
+// postEditPage.setState({
+//   postId: 2,
+// });
 // import { request } from "./api.js";
 // import PostList from "./PostList.js";
 
