@@ -1,6 +1,6 @@
 import { request } from "./api.js";
 import Editor from "./Editor.js";
-import { getItem, setItem } from "./storage.js";
+import { getItem, setItem, removeItem } from "./storage.js";
 
 // editor가 어떠한 게시글을 편집하는 것인지에 대한 값이 있어야한다.
 // post id를 처음에 받을 것이다.
@@ -35,11 +35,26 @@ export default function PostEditPage({ $target, initialState }) {
       if (timer !== null) {
         clearTimeout(timer);
       }
-      timer = setTimeout(() => {
+      timer = setTimeout(async () => {
         setItem(postLocalSaveKey, {
           ...post,
           tempSaveDate: new Date(),
         });
+
+        
+        // postId가 new일 때
+        const isNew = this.state.postId === "new";
+        if (isNew) {
+          const createdPost = await request("/posts", {
+            method: "POST",
+            body: JSON.stringify(post), //this.state에는 postId바께 없으므로, 변경해줘야함.
+          });
+          // {postId}가 변경이 되도록 한다. ex. new -> 2356
+          // 뒤로가기 했을 때 new로 가지 않도록
+          history.replaceState(null, null, `/posts/${createdPost.id}`);
+          // removeItem(postLocalSaveKey);
+        } else {
+        }
       }, 1000);
     },
   });
@@ -90,7 +105,7 @@ export default function PostEditPage({ $target, initialState }) {
       console.log(tempPost);
 
       //tempSaveDate => 최근 수정 시간
-      //tempSaveDate가 있는 경우 && tempSaveDate가 post가 없데이트된 시간보다 클 경우
+      //tempSaveDate가 있는 경우 && tempSaveDate가 post가 업데이트된 시간보다 클 경우
       if (tempPost.tempSaveDate && tempPost.tempSaveDate > post.updated_at) {
         if (confirm("저장되지 않은 임시 데이터가 있습니다. 불러올까요?")) {
           this.setState({ ...this.state, post: tempPost });
