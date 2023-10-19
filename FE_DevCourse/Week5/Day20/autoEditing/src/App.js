@@ -11,7 +11,10 @@ export default function App({ $target }) {
   const postsPage = new PostsPage({ $target });
   const postEditPage = new PostEditPage({
     $target,
-    initialState: { postId: "new" }, //기본: new
+    initialState: {
+      postId: "new", //기본: new
+      post: { title: "", content: "" },
+    },
   });
 
   this.route = () => {

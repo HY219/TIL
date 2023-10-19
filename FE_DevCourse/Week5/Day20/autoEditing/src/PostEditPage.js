@@ -15,10 +15,11 @@ export default function PostEditPage({ $target, initialState }) {
 
   // page1를 수정하고, page2에 들어왔는데 page1의 내용이 들어와져있는 경우가 발생할 수 있다.
   // -> key를 조합해서 쓴느 것이 필요하다.
-  const TEMP_POST_SAVE_KEY = `temp-post-${this.state.postId}`;
+  //const TEMP_POST_SAVE_KEY = `temp-post-${this.state.postId}`; //let postLocalSaveKey
+  let postLocalSaveKey = `temp-post-${this.state.postId}`;
 
   //getItem(불러올 값, 불러올 값이 없을 경우 세팅할 값)
-  const post = getItem(TEMP_POST_SAVE_KEY, {
+  const post = getItem(postLocalSaveKey, {
     title: "",
     content: "",
   });
@@ -35,7 +36,7 @@ export default function PostEditPage({ $target, initialState }) {
         clearTimeout(timer);
       }
       timer = setTimeout(() => {
-        setItem(TEMP_POST_SAVE_KEY, {
+        setItem(postLocalSaveKey, {
           ...post,
           tempSaveDate: new Date(),
         });
@@ -48,6 +49,7 @@ export default function PostEditPage({ $target, initialState }) {
   this.setState = async (nextState) => {
     // console.log(this.state.postId, nextState.postId);
     if (this.state.postId !== nextState.postId) {
+      postLocalSaveKey = `temp-post-${nextState.postId}`;
       this.state = nextState;
       await fetchPost();
       return;
@@ -57,7 +59,14 @@ export default function PostEditPage({ $target, initialState }) {
     this.render();
 
     // console.log(this.state.post);
-    editor.setState(this.state.post);
+    //여기서 날려먹는 문제..
+    //default 값을 지정해줘서 해결
+    editor.setState(
+      this.state.post || {
+        title: "",
+        content: "",
+      }
+    );
   };
 
   this.render = () => {

@@ -15,6 +15,7 @@ export default function Editor({
   //외부에서 편집할 값을 불러와서 넣어주기
   //render함수가 할 일이 생김
   this.setState = (nextState) => {
+    console.log(nextState); //undefined 
     this.state = nextState;
     $editor.querySelector("[name=title]").value = this.state.title;
     $editor.querySelector("[name=content]").value = this.state.content;
