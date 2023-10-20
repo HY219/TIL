@@ -1,12 +1,15 @@
 import PostList from "./PostList.js";
 import { request } from "./api.js";
 
-export default function PostsPage({ $target }) {
+//onPostClick은 app까지 올려야돤다. 그래야 app에서 PostEditPage로 보낼 수 있다.
+//-> PostsPage의 매계번수로 추가하는 이유
+export default function PostsPage({ $target, onPostClick }) {
   const $page = document.createElement("div");
 
   const postList = new PostList({
-    $target,
+    $target: $page,
     initialState: [],
+    onPostClick,
   });
 
   /** app.js(외부)에서 postsPage랜더를 실행하면,

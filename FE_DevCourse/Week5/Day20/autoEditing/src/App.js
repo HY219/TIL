@@ -8,7 +8,14 @@ import PostEditPage from "./PostEditPage.js";
 // /posts/new - 새 post 생성
 export default function App({ $target }) {
   //라우팅 처리하는 것이 필요함.
-  const postsPage = new PostsPage({ $target });
+  const postsPage = new PostsPage({
+    $target,
+    onPostClick: (id) => {
+      // alert(id);
+      history.pushState(null, null, `/posts/${id}`); //해당 페이지로 이동
+      this.route(); // App.js의 route()가 동작
+    },
+  });
   const postEditPage = new PostEditPage({
     $target,
     initialState: {
@@ -18,6 +25,7 @@ export default function App({ $target }) {
   });
 
   this.route = () => {
+    $target.innerHTML = ""; //routing을 할 때, 비워줘야한다.
     //location에서 pathnmae불러오기 //main에서 App컴포넌트를 불러야 o
     const { pathname } = window.location;
     console.log(pathname);

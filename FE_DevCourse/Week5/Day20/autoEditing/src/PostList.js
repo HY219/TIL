@@ -23,4 +23,14 @@ export default function PostList({ $target, initialState, onPostClick }) {
   };
 
   this.render();
+
+  $postList.addEventListener("click", (e) => {
+    const $li = e.target.closest("li"); //postList내 클릭한 li를 가져올 수 있다. //19번째 줄 - `<li data-id="${post.id}">${post.title}</li>`
+
+    if ($li) {
+      const { id } = $li.dataset;
+
+      onPostClick(id);
+    }
+  });
 }
