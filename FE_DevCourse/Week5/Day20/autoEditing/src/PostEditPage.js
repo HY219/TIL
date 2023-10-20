@@ -41,7 +41,6 @@ export default function PostEditPage({ $target, initialState }) {
           tempSaveDate: new Date(),
         });
 
-        
         // postId가 new일 때
         const isNew = this.state.postId === "new";
         if (isNew) {
@@ -52,8 +51,15 @@ export default function PostEditPage({ $target, initialState }) {
           // {postId}가 변경이 되도록 한다. ex. new -> 2356
           // 뒤로가기 했을 때 new로 가지 않도록
           history.replaceState(null, null, `/posts/${createdPost.id}`);
-          // removeItem(postLocalSaveKey);
+          removeItem(postLocalSaveKey);
         } else {
+          // update
+          // new에서 작성 후, 새로고침 했을 때 confirm이 뜨지 않고, update된 값이 불러와짐
+          await request(`/posts/${post.id}`, {
+            method: "PUT",
+            body: JSON.stringify(post),
+          });
+          removeItem(postLocalSaveKey);
         }
       }, 1000);
     },
