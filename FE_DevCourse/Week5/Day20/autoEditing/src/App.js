@@ -1,5 +1,6 @@
 import PostsPage from "./PostsPage.js";
 import PostEditPage from "./PostEditPage.js";
+import { initRouter } from "./router.js";
 
 // url 규칙
 // 루트 : postsPage 그리기
@@ -52,21 +53,7 @@ export default function App({ $target }) {
   };
 
   this.route();
-  //app컴포넌트가 생성이되면, postsPage을 생성하고, 그 후에 render를 호출해서 화면에 그리기
-
-  // 이동할 때마다, App.js에 있는 onroute()를 호출하려면, 위에서부터 쭉 내려야 한다.
-  // 이런 경우는, component deps가 어디에서 생길지 모른다.
-  // -> 이럴 때 사용할 수 있는게, 코스파이메틱?이다.
 
   //nextUrl이 유효할 때만 라우팅 처리하기!!!
-
-  // 이벤트를 내 맘대로 잠음.(route-chagne)
-  window.addEventListener("route-change", (e) => {
-    const { nextUrl } = e.detail;
-
-    if (nextUrl) {
-      history.pushState(null, null, nextUrl);
-      this.route();
-    }
-  });
+  initRouter(() => this.route()); //App.js의 this.route()를 받아와 사용할 수 있다. (router.js에서)
 }

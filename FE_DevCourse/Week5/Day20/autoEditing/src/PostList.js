@@ -1,3 +1,5 @@
+import { push } from "./router.js";
+
 export default function PostList({
   $target,
   initialState,
@@ -34,16 +36,7 @@ export default function PostList({
     if ($li) {
       const { id } = $li.dataset;
 
-      //onPostClick(id);
-      //custom 이벤트가 발생
-      window.dispatchEvent(
-        new CustomEvent("route-change", {
-          //이벤트 데이터로 넣을 수 있는 값
-          detail: {
-            nextUrl: `/posts/${id}`,
-          },
-        })
-      );
+      push(`/posts/${id}`);
     }
   });
 }
