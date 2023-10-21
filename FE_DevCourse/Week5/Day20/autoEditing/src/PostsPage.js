@@ -1,5 +1,6 @@
 import PostList from "./PostList.js";
 import { request } from "./api.js";
+import { push } from "./router.js";
 
 //onPostClick은 app까지 올려야돤다. 그래야 app에서 PostEditPage로 보낼 수 있다.
 //-> PostsPage의 매계번수로 추가하는 이유
@@ -23,6 +24,10 @@ export default function PostsPage({
   const $newPostButton = document.createElement("button");
   $newPostButton.textContent = "New Post";
   $page.appendChild($newPostButton);
+
+  $newPostButton.addEventListener("click", () => {
+    push("/posts/new");
+  });
 
   const fetchPosts = async () => {
     const posts = await request("/posts");
