@@ -1,6 +1,7 @@
 import { request } from "./api.js";
 import Editor from "./Editor.js";
 import { getItem, setItem, removeItem } from "./storage.js";
+import { push } from "./router.js";
 
 // editor가 어떠한 게시글을 편집하는 것인지에 대한 값이 있어야한다.
 // post id를 처음에 받을 것이다.
@@ -125,4 +126,13 @@ export default function PostEditPage({ $target, initialState }) {
       });
     }
   };
+
+  // 글 목록 페이지로 가는 버튼
+  const $moveListButton = document.createElement("button");
+  $moveListButton.innerText = "목록으로";
+  $page.appendChild($moveListButton);
+
+  $moveListButton.addEventListener("click", () => {
+    push("/");
+  });
 }
