@@ -21,18 +21,15 @@ export default function Nodes({ $target, initialState, onClick }) {
         }
         ${nodes.map(
           (node) => `
-            ${node.type === `DIRECTORY` ? `
-              <div class="Node">
-                <img src="https://cdn.roto.codes/images/directory.png">${node.name}
-              </div>
-            ` : ``} 
-            ${node.type === `FILE` ? `
-              <div>
-                <img src="https://cdn.roto.codes/images/file.png">${node.name}
-              </div>
-            ` : ``}
-            ` // node.type에 따라 맞는 이미지 출력
-        )}
+            <div class="Node">
+              <img src="${node.type === `DIRECTORY` ? 
+                "https://cdn.roto.codes/images/directory.png" : 
+                "https://cdn.roto.codes/images/file.png"
+              }">
+              ${node.name}
+            </div>
+          ` // node.type에 따라 맞는 이미지 출력
+        ).join('')}
     `;
   };
 
