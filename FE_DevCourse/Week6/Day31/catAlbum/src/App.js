@@ -45,12 +45,33 @@ const DUMMY_DATA = [
   },
 ];
 
+const DUMMY_DATA_2 = [
+  {
+    "id": "5",
+    "name": "2021/04",
+    "type": "DIRECTORY",
+    "filePath": null,
+    "parent": {
+      "id" : "1"
+    }
+  },
+  {
+    "id":"19",
+    "name": "물 마시는 사진",
+    "type": "FILE",
+    "filePath": "/images/a2i.jpg",
+    "parent": {
+      "id": "1"
+    }
+  }
+]
+
 export default function App({ $target }) {
   const nodes = new Nodes({
     $target,
     initialState: {
-      isRoot: true, //root값에 따라서, 뒤로가기를 넣거나 넣지않음.
-      nodes: DUMMY_DATA,
+      isRoot: false, //root값에 따라서, 뒤로가기를 넣거나 넣지않음.
+      nodes: DUMMY_DATA_2,
     },
     onClick: () => {}, //그냥 클릭 했을 경우 & 뒤로가기를 클릭 했을 경우 (2가지)
   });
