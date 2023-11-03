@@ -1,4 +1,5 @@
 import { request } from "./api.js";
+import ImageViewer from "./ImageViewer.js";
 import Nodes from "./Nodes.js";
 
 export default function App({ $target }) {
@@ -12,13 +13,22 @@ export default function App({ $target }) {
     initialState: {
       isRoot: this.state.isRoot,
       nodes: this.state.nodes,
+      selectedImageUrl: null,
     },
     onClick: async (node) => {
       if (node.type === "DIRECTORY"){
         await fetchNodes(node.id);
       }
+      if (node.type === "FILE"){
+        this.setState({
+          ...this.state,
+          selectedImageUrl: `https://kdt-frontend.cat-api.programmers.co.kr/static${node.filePath}` // 이미지 경로
+        })
+      }
     }, //그냥 클릭 했을 경우 & 뒤로가기를 클릭 했을 경우 (2가지)
   });
+
+  const imageViewer = new ImageViewer({ $target });
 
   this.setState = (nextState) => {
     this.state = nextState;
@@ -28,6 +38,10 @@ export default function App({ $target }) {
       isRoot: this.state.isRoot,
       nodes: this.state.nodes,
     });
+
+    imageViewer.setState({
+      selectedImageUrl: this.state.selectedImageUrl
+    })
   };
 
   // id 파라미터가 있으면, 해당 id에 속한 data를 불러오도록 한다.
