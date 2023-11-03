@@ -21,7 +21,6 @@ export default function App({ $target }) {
       if (node.type === "DIRECTORY"){
         await fetchNodes(node.id);
 
-        console.log(this.state);
         // paths.push(node);
         this.setState({
           ...this.state,
@@ -85,6 +84,7 @@ export default function App({ $target }) {
     const nodes = await request(id ? `/${id}` : "/");
 
     this.setState({
+      ...this.state,
       nodes,
       isRoot: id ? false : true, //id가 있으면 false, 없으면 true
     });
