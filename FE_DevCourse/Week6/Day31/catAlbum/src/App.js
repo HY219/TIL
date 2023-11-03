@@ -1,13 +1,19 @@
 import { request } from "./api.js";
 import ImageViewer from "./ImageViewer.js";
+import Loading from "./Loading.js";
 import Nodes from "./Nodes.js";
 
 export default function App({ $target }) {
   this.state = {
     isRoot: true, //root값에 따라서, 뒤로가기를 넣거나 넣지않음.
+    isLoading: false,
     nodes: [],
     paths: [], //DIRECTORY를 클릭할 때마다, 해당 경로를 paths에 쌓아준다.
   };
+
+  const loading = new Loading({
+    $target,
+  })
 
   const nodes = new Nodes({
     $target,
@@ -77,16 +83,25 @@ export default function App({ $target }) {
     imageViewer.setState({
       selectedImageUrl: this.state.selectedImageUrl
     })
+
+    loading.setState(this.state.isLoading);
   };
 
   // id 파라미터가 있으면, 해당 id에 속한 data를 불러오도록 한다.
   const fetchNodes = async (id) => {
+    // data를 불러올 때 (= fetchNodes가 시작할 때)
+    this.setState({
+      ...this.state,
+      isLoading: true,
+    })
+
     const nodes = await request(id ? `/${id}` : "/");
 
     this.setState({
       ...this.state,
       nodes,
       isRoot: id ? false : true, //id가 있으면 false, 없으면 true
+      isLoading: false, // fetchNodes가 끝날 때
     });
   };
 
