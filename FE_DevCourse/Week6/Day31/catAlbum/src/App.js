@@ -28,7 +28,14 @@ export default function App({ $target }) {
     }, //그냥 클릭 했을 경우 & 뒤로가기를 클릭 했을 경우 (2가지)
   });
 
-  const imageViewer = new ImageViewer({ $target });
+  const imageViewer = new ImageViewer({ 
+    $target, 
+    onClose: () => {
+      this.setState({
+        ...this.state,
+        selectedImageUrl: null // 닫는 처리
+      })
+  } });
 
   this.setState = (nextState) => {
     this.state = nextState;

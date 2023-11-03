@@ -1,4 +1,4 @@
-export default function ImageViewer({ $target }){
+export default function ImageViewer({ $target, onClose }){
     const $imageViewer = document.createElement("div");
     $imageViewer.className = "ImageViewer Modal";
     $target.appendChild($imageViewer);
@@ -24,4 +24,23 @@ export default function ImageViewer({ $target }){
     }
 
     this.render();
+
+    window.addEventListener('keyup', (e) => {
+        // 만약 누른 키가 esc인 경우 onClose를 호출한다.
+        alert(e.key);
+        if (e.key === "Escape") {
+            onClose();
+        }
+    })
+
+    $imageViewer.addEventListener('click', (e) => {
+        // includes는 Array에서 동작하는 메서드이기 때문에
+        // 배열이 아닌 e.target.classList를 Array.from으로 감싸주어야한다.
+        // (e.target.classList는 유사배열인 DOMTokenList를 반환)
+        console.log(e.target.classList);
+        console.log(Array.from(e.target.classList));
+        if (Array.from(e.target.classList).includes('Modal')) {
+            onClose();
+        }
+    })
 }
