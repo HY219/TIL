@@ -1,4 +1,4 @@
-export default function Nodes({ $target, initialState, onClick }) {
+export default function Nodes({ $target, initialState, onClick, onPrevClick }) {
   const $nodes = document.createElement("div");
   $target.appendChild($nodes);
   $nodes.classList.add("Nodes"); // css가 적용되도록, 클래스 이름 추가
@@ -53,7 +53,8 @@ export default function Nodes({ $target, initialState, onClick }) {
     if (node) {
       onClick(node);
     } else {
-      alert("올바르지 않은 Node입니다.")
+      // 뒤로가기 클릭 시
+      onPrevClick();
     }
   })
 }

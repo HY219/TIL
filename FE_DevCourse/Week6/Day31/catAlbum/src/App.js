@@ -6,6 +6,7 @@ export default function App({ $target }) {
   this.state = {
     isRoot: true, //root값에 따라서, 뒤로가기를 넣거나 넣지않음.
     nodes: [],
+    paths: [], //DIRECTORY를 클릭할 때마다, 해당 경로를 paths에 쌓아준다.
   };
 
   const nodes = new Nodes({
@@ -15,9 +16,17 @@ export default function App({ $target }) {
       nodes: this.state.nodes,
       selectedImageUrl: null,
     },
+    // DIRECTORY, FILE을 클릭햇을 경우
     onClick: async (node) => {
       if (node.type === "DIRECTORY"){
         await fetchNodes(node.id);
+
+        console.log(this.state);
+        // paths.push(node);
+        this.setState({
+          ...this.state,
+          paths: [...this.state.paths, node]
+        })
       }
       if (node.type === "FILE"){
         this.setState({
@@ -25,7 +34,27 @@ export default function App({ $target }) {
           selectedImageUrl: `https://kdt-frontend.cat-api.programmers.co.kr/static${node.filePath}` // 이미지 경로
         })
       }
-    }, //그냥 클릭 했을 경우 & 뒤로가기를 클릭 했을 경우 (2가지)
+    },
+    // 뒤로가기를 클릭 했을 경우
+    onPrevClick: async () => {
+      // paths.pop()
+      const nextPaths = [...this.state.paths]
+      nextPaths.pop();
+      this.setState({
+        ...this.state,
+        paths: nextPaths,
+      })
+
+      console.log(nextPaths);
+
+      if (nextPaths.length === 0){
+        // root 불러오기
+        await fetchNodes();
+      } else {
+        // 이전 id에 해당하는 경로 불러오기
+        await fetchNodes(nextPaths[nextPaths.length -1].id) // paths 마지막에 담긴 id = 현재 경로 이전 경로의 id
+      }
+    }
   });
 
   const imageViewer = new ImageViewer({ 
