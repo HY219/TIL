@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue3</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 반응형 데이터 -->
+      <!-- 데이터가 바뀌면 화면이 바뀌는 반응성을 가진다 -->
+      {{ counter }}
+    </div>
+    <script>
+      // 연결
+      Vue.createApp({
+        // 옵션
+        data() {
+          return {
+            counter: 0,
+          };
+        },
+        // 옵션
+        mounted() {
+          setInterval(() => {
+            this.counter += 1;
+          }, 1000);
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>
