@@ -16,6 +16,7 @@
       <!-- HTML의 속성에 데이터를 연결할 때, 디렉티브(v-bind)를 붙여야한다.-->
       <!-- HTML에 content를 출력할 때, 이중 중괄호를 사용한다. -->
       <div v-bind:class="{ orange: active }">{{ counter }}</div>
+      <button v-on:click="increase">Click me!</button>
     </div>
     <script>
       const App = {
@@ -25,6 +26,13 @@
             counter: 0,
             active: true,
           };
+        },
+        // 옵션
+        // 객체 리터럴 형태
+        methods: {
+          increase() {
+            this.counter += 1;
+          },
         },
       };
       // 연결
