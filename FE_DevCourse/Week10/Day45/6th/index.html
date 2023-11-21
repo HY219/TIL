@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">{{ msg }}</div>
+    <script>
+      const App = {
+        data() {
+          return {
+            msg: "Hello Vue!",
+          };
+        },
+        // 생성되기 전에 동작해야할 내용 작성
+        beforeCreate() {
+          console.log("beforeCreate!", this.msg); // undefined // 생성되기 전이므로
+        },
+        // 생성된 후
+        created() {
+          console.log("created!", this.msg); // Hello Vue!
+        },
+        // HTML에 연결 전
+        befoerMound() {
+          console.log('beforeMound!', this.msg); // Hello Vue!
+        },
+        // HTML에 연결 후
+        mounted(){
+          console.log('mounted!', this.msg); // Hello Vue!
+        }
+      };
+      // vue 어플리케이션
+      const app = Vue.createApp(App);
+      // vue와 연결해서 나오는 인스턴스
+      const vm = app.mount("#app"); // vm = viewModel
+    </script>
+  </body>
+</html>
