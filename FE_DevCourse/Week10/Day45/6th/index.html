@@ -15,11 +15,30 @@
             msg: "Hello Vue!",
           };
         },
-        /* 연결 해제 */
-        /**
-         * vm.msg = "Good~"
-         * app.unmount() //아래 코드에서 반환 받은 app을 활용하여 연결 해제 할 수 있다.
-         * */
+        beforeCreated() {
+          console.log("beforeCreated!", this.msg); // undefined
+          document.querySelector("h1"); // null
+        },
+        created() {
+          console.log("beforeCreated!", this.msg); // Hello Vue!
+          document.querySelector("h1"); // null
+        },
+        beforeMounted() {
+          console.log("beforeCreated!", this.msg); // Hello Vue!
+          document.querySelector("h1"); // null
+        },
+        mounted() {
+          console.log("beforeCreated!", this.msg); // Hello Vue!
+          document.querySelector("h1"); // <h1>
+        },
+        beforeUpdated() {
+          console.log("beforeCreated!", this.msg); // Good!
+          document.querySelector("h1").textContent; // Hello Vue!
+        },
+        updated() {
+          console.log("beforeCreated!", this.msg); // Good!
+          document.querySelector("h1").textContent; // Good!
+        },
         beforeUnmount() {
           console.log("beforeUnmout!");
         },
