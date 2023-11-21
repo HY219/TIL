@@ -15,22 +15,16 @@
             msg: "Hello Vue!",
           };
         },
-        // 선언해 놓은 data가 수정될 때 실행된다.
-        // *** 데이터의 업데이트가 아닌, 화면의 업데이트이다. ***
-        /* 
-          vm.msg = 'Good!'
-        */
-
-        // 화면이 업데이트 되기 전의 상태
-        // *** 데이터가 업데이트 되기 전의 상태가 아님에 주의 ***
-        beforeUpdate() {
-          console.log("beforeUpdate!", this.msg); // Good!
-          console.log(document.querySelector("h1").textContent); // Hello Vue!
+        /* 연결 해제 */
+        /**
+         * vm.msg = "Good~"
+         * app.unmount() //아래 코드에서 반환 받은 app을 활용하여 연결 해제 할 수 있다.
+         * */
+        beforeUnmount() {
+          console.log("beforeUnmout!");
         },
-        // 화면이 업데이트 된 후의 상태
-        updated() {
-          console.log("updated!", this.msg); // Good!
-          console.log(document.querySelector("h1").textContent); // Good!
+        unmounted() {
+          console.log("unmounted!");
         },
       };
       // vue 어플리케이션
