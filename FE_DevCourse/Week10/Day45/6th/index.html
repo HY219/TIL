@@ -15,29 +15,23 @@
             msg: "Hello Vue!",
           };
         },
-        // Vue.js 어플리케이션이 생성되기 전에 동작해야할 내용 작성
-        beforeCreate() {
-          console.log("beforeCreate!", this.msg); // undefined // 생성되기 전이므로
-          console.log(document.querySelectorAll("h1")); // null
-        },
-        // 생성된 후
-        // 실제로 데이터에 접근해서 여러 작업들을 처리하는 내용 작성
-        created() {
-          console.log("created!", this.msg); // Hello Vue!
-          console.log(document.querySelectorAll("h1")); // null
-        },
-        // HTML에 연결 전
-        befoerMount() {
-          console.log('beforeMound!', this.msg); // Hello Vue!
-          console.log(document.querySelectorAll("h1")); // null
-        },
-        // HTML 구조, 즉 DOM에 연결된 후
-        // HTML 구조를 직접적으로 접근해서 다루는(DOM API) 내용 작성
-        mounted(){
-          console.log('mounted!', this.msg); // Hello Vue!
-          console.log(document.querySelectorAll("h1")); // <h1>
+        // 선언해 놓은 data가 수정될 때 실행된다.
+        // *** 데이터의 업데이트가 아닌, 화면의 업데이트이다. ***
+        /* 
+          vm.msg = 'Good!'
+        */
 
-        }
+        // 화면이 업데이트 되기 전의 상태
+        // *** 데이터가 업데이트 되기 전의 상태가 아님에 주의 ***
+        beforeUpdate() {
+          console.log("beforeUpdate!", this.msg); // Good!
+          console.log(document.querySelector("h1").textContent); // Hello Vue!
+        },
+        // 화면이 업데이트 된 후의 상태
+        updated() {
+          console.log("updated!", this.msg); // Good!
+          console.log(document.querySelector("h1").textContent); // Good!
+        },
       };
       // vue 어플리케이션
       const app = Vue.createApp(App);
