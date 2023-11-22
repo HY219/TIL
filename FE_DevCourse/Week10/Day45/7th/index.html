@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{ msg }}</h1>
+      <!-- v-once : 한 번만 화면에 출력해주고, 반응성을 갖지 않게 만든다. -->
+      <!-- 데이터는 바뀌었지만, 화면에 출력해주지 않는다. -->
+      <h2 v-once>{{ msg }}</h2> 
+    </div>
+    <script>
+      const App = {
+        data() {
+          return {
+            msg: "Hello Vue!",
+          };
+        },
+      };
+      const app = Vue.createApp(App);
+      const vm = app.mount("#app");
+    </script>
+  </body>
+</html>
