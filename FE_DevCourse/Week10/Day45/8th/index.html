@@ -19,6 +19,9 @@
       <!-- disabled : input 비활성화 -->
       <!-- v-bind : 속성에 데이터를 연결할 경우 사용-->
       <input type="text" value="Hello Vue!" v-bind:disabled="disabled" />
+      <!-- 표현식은 최대한 간단히 작성 -->
+      <!-- 복잡해지면, computed 속성을 이용 -->
+      <h1>{{ count + 2 }}</h1>
     </div>
     <script>
       const App = {
@@ -26,6 +29,7 @@
           return {
             name: "active",
             disabled: false, // null = false
+            count: 0,
           };
         },
       };
