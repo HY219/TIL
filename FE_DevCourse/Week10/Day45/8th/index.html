@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <style>
+        .active{
+            color: red;
+        }
+    </style>
+    <div id="app">
+        <!-- html 속성 부분에 데이터를 보간해서 넣을 수 있다. -->
+        <!-- <h1 class="active">Hello Vue!</h1> -->
+        <h1 v-bind:class="name">Hello Vue!</h1>
+    </div>
+    <script>
+        const App = {
+            data() {
+                return {
+                    name: 'active'
+                }
+            }
+        }
+        const app = Vue.createApp(App)
+        const vm = app.mount("#app")
+    </script>
+</body>
+</html>
