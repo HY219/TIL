@@ -15,12 +15,12 @@
          <div>{{ double() }}</div>
          <div>{{ double() }}</div> 
       -->
-      <div>{{ double }}</div> 
+      <div>{{ double }}</div>
       <div>{{ double }}</div>
       <div>{{ double }}</div>
     </div>
     <script>
-        // 컴포넌트
+      // 컴포넌트
       const App = {
         data() {
           return {
@@ -29,9 +29,9 @@
         },
         // 계산된 데이터를 만드는 방법
         computed: {
-            // 데이터로 취급(함수가 아닌)
-            // 캐싱 (함수를 여러번 실행x, 값을 출력)
-            double() {
+          // 데이터로 취급(함수가 아닌)
+          // 캐싱 (함수를 여러번 실행x, 값을 출력)
+          double() {
             return this.count * 2;
           },
         },
