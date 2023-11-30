@@ -1,8 +1,14 @@
 <template>
   <h1>Hello Vue!</h1>
   <Btn />
+  <Hello />
 </template>
 
 <script>
-export default {};
+import Hello from "~/components/Hello";
+export default {
+  components: {
+    Hello,
+  },
+};
 </script>
