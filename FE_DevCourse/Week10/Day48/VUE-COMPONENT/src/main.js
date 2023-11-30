@@ -1,4 +1,8 @@
 import { createApp } from "vue";
-import App from "./App.vue";
+import App from "~/App.vue";
+import Btn from "~/components/BTn";
 
-createApp(App).mount("#app");
+const app = createApp(App);
+// 컴포넌트 전역등록
+app.component("Btn", Btn);
+app.mount("#app");
