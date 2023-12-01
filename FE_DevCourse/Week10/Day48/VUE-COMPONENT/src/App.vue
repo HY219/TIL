@@ -1,7 +1,7 @@
 <template>
   <h1>Hello Vue!</h1>
   <Btn />
-  <Hello :message="msg"/>
+  <Hello :message="msg" :name="'123'" />
   <button @click="reverseMsg">Click!</button>
 </template>
 
@@ -13,13 +13,13 @@ export default {
   },
   data() {
     return {
-      msg : "Hello Vue!"
-    }
+      msg: "Hello Vue!",
+    };
   },
   methods: {
     reverseMsg() {
-      this.msg = this.msg.split('').reverse().join('')
-    }
-  }
+      this.msg = this.msg.split("").reverse().join("");
+    },
+  },
 };
 </script>
