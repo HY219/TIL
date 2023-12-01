@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <li v-for="todo in todos">{{ todo.title }}</li>
+      </ul>
+      <ul>
+        <!-- 캐싱 : 데이터 재활용 -->
+        <li v-for="todo in upperTodos">{{ todo.title }}</li>
+      </ul>
+    </div>
+    <script>
+      const App = {
+        data() {
+          return {
+            todos: [],
+          };
+        },
+        computed: {
+          // 대문자로 변경
+          upperTodos() {
+            /**
+             *  return this.todos.map((todo) => {
+                        return {
+                            ...todo,
+                            title: todo.title.toUpperCase()
+                        }
+                    })
+             * */
+            return this.todos.map((todo) => ({
+              ...todo,
+              title: todo.title.toUpperCase(),
+            }));
+          },
+        },
+        created() {
+          // 연습용 json 파일 이용하기
+          fetch("https://jsonplaceholder.typicode.com/todos")
+            .then((res) => res.json())
+            .then((res) => {
+              console.log(res);
+              // 화살표 함수를 사용해야 올바른 this 바인딩이 가능하다
+              this.todos = res;
+            });
+        },
+      };
+      const vm = Vue.createApp(App).mount("#app");
+    </script>
+  </body>
+</html>

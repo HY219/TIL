@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue3</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 반응형 데이터 -->
+      <!-- 데이터가 바뀌면 화면이 바뀌는 반응성을 가진다 -->
+      {{ counter }}
+    </div>
+    <script>
+      const App = {
+        // 옵션
+        data() {
+          return {
+            counter: 0,
+          };
+        },
+        // 옵션
+        mounted() {
+          // 일반 함수의 this -> 호출 방식에 따라 this에 바인딩되는 객체가 다르다. ()
+          // 화살표 함수의 this -> 선언될 때 this에 바인딩될 객체가 정적으로 결정된다. 언제나 상위 스코프의 this를 가리킨다. (App)
+
+          // setInterval 내에는 콜백함수 작성
+          setInterval(() => {
+            this.counter += 1;
+          }, 1000);
+        },
+      };
+
+      // 연결
+      Vue.createApp(App).mount("#app");
+    </script>
+  </body>
+</html>

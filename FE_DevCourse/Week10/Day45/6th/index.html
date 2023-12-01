@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">{{ msg }}</div>
+    <script>
+      const App = {
+        data() {
+          return {
+            msg: "Hello Vue!",
+          };
+        },
+        beforeCreated() {
+          console.log("beforeCreated!", this.msg); // undefined
+          document.querySelector("h1"); // null
+        },
+        created() {
+          console.log("beforeCreated!", this.msg); // Hello Vue!
+          document.querySelector("h1"); // null
+        },
+        beforeMounted() {
+          console.log("beforeCreated!", this.msg); // Hello Vue!
+          document.querySelector("h1"); // null
+        },
+        mounted() {
+          console.log("beforeCreated!", this.msg); // Hello Vue!
+          document.querySelector("h1"); // <h1>
+        },
+        beforeUpdated() {
+          console.log("beforeCreated!", this.msg); // Good!
+          document.querySelector("h1").textContent; // Hello Vue!
+        },
+        updated() {
+          console.log("beforeCreated!", this.msg); // Good!
+          document.querySelector("h1").textContent; // Good!
+        },
+        beforeUnmount() {
+          console.log("beforeUnmout!");
+        },
+        unmounted() {
+          console.log("unmounted!");
+        },
+      };
+      // vue 어플리케이션
+      const app = Vue.createApp(App);
+      // vue와 연결해서 나오는 인스턴스
+      const vm = app.mount("#app"); // vm = viewModel
+    </script>
+  </body>
+</html>

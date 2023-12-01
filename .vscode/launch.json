@@ -1,0 +1,23 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    // {
+    //   "name": "Launch Chrome",
+    //   "request": "launch",
+    //   "type": "node",
+    //   "program": "${workspaceFolder}/FE_DevCourse/Week6/Day31/catAlbum/index.html"
+    // },
+    {
+      "type": "node",
+      "name": "Run Current File",
+      "request": "launch",
+      "program": "${workspaceFolder}\\FE_DevCourse\\Week6\\Day31\\catAlbum\\src\\App.js"
+    }
+    // {
+    //   "type": "node",
+    //   "name": "Run Current File",
+    //   "request": "launch",
+    //   "program": "${workspaceFolder}\\FE_DevCourse\\Week6\\Day31\\example.js"
+    // }
+  ]
+}
