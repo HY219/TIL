@@ -1,21 +1,16 @@
 import logo from "./logo.svg";
 import PropTypes from "prop-types";
 
-function Logo(props) {
+function Logo({ size = 300 }) {
   return (
     <img
       src={logo}
       className="App-logo"
       alt="logo"
-      style={{ width: `${props.size}px`, height: `${props.size}px` }}
+      style={{ width: `${size}px`, height: `${size}px` }}
     />
   );
 }
-
-// 지정된 props가 없을 경우, 사용할 default 값
-Logo.defaultProps = {
-  size: 300,
-};
 
 Logo.propTypes = {
   size: PropTypes.number,
