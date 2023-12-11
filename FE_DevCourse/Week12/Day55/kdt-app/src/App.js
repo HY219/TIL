@@ -1,5 +1,6 @@
 import "./App.css";
 import Logo from "./components/Logo";
+import Paragraph from "./components/Paragraph";
 
 function App() {
   return (
@@ -7,9 +8,12 @@ function App() {
       <header className="App-header">
         <Logo size={100} />
         <Logo />
-        <p>
+        <Paragraph>
           Edit <code>src/App.js</code> and save to reload.
-        </p>
+        </Paragraph>
+        <Paragraph size={14} color="blue">
+          I'm blue daba dte daba
+        </Paragraph>
         <a
           className="App-link"
           href="https://reactjs.org"
