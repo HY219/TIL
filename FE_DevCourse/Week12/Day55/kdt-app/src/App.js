@@ -1,53 +1,43 @@
-import "./App.css";
+// 요구사항
+// 1. Counter 컴포넌트 구현하기
+// 2. 모든 Counter 컴포넌트의 합 구하기
+
+// 무엇을 배울 것인가
+// 1. 컴포넌트에서 지역 상태 관리하는 법
+// 2. 컴포넌트에 이벤트 바인딩하기
+// 3. 부모 컴포넌트에게 메시지 전달하기
 import { useState } from "react";
-import Logo from "./components/Logo";
-import Paragraph from "./components/Paragraph";
-import Board from "./components/Board";
+import Counter from "./components/Counter";
 
 function App() {
-  const [visible, setVisible] = useState(false);
-
-  const articles = [{
-    id: 1,
-    title: 'John입니다 :)',
-    author: 'John',
-  },
-  {
-    id: 2,
-    title: 'Hue 입니다',
-    author: 'Hue',
-  },
-  {
-    id: 3,
-    title: 'Jeong입니다.',
-    author: 'Jeong',
-  },
-]
+  const [totalCount, setTotalCount] = useState(0);
   return (
-    <div className="App">
-      <button onClick={() => setVisible(!visible)}>Toggle</button>
-      {/* {visible && ( */}
-      {visible ? (
-        <header className="App-header">
-          <Logo size={100} />
-          <Logo />
-          <Paragraph>
-            Edit <code>src/App.js</code> and save to reload.
-          </Paragraph>
-          <Paragraph size={14} color="blue">
-            I'm blue daba dte daba
-          </Paragraph>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      ) : null}
-      <Board articles={articles}></Board>
+    <div>
+      TotalCount: {totalCount}
+      <Counter
+        onIncrease={(count) => {
+          setTotalCount(totalCount + 1);
+        }}
+        onDecrease={(count) => {
+          setTotalCount(totalCount - 1);
+        }}
+      />
+      <Counter
+        onIncrease={(count) => {
+          setTotalCount(totalCount + 1);
+        }}
+        onDecrease={(count) => {
+          setTotalCount(totalCount - 1);
+        }}
+      />
+      <Counter
+        onIncrease={(count) => {
+          setTotalCount(totalCount + 1);
+        }}
+        onDecrease={(count) => {
+          setTotalCount(totalCount - 1);
+        }}
+      />
     </div>
   );
 }
