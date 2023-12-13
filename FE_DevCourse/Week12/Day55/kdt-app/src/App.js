@@ -1,42 +1,26 @@
-// useEffect
-// 무언가 변화가 있을 때, 감지하여 반응하는 Hook
-import { useEffect, useState } from "react";
+// useRef는
+// 1. 'DOM에 직접 접근'할 때 사용한다.
+// 2. '다시 렌더링하지 않을, 지역 변수'로 사용할 때 사용한다.
+// useState는 값이 변경될 때 다시 렌더링을 한다.
+// useRef는 값이 변경되도라도 다시 렌더링을 하지 않는다.
+
+import { useRef } from "react";
+import Input from "./components/Input";
+import AutoCounter from "./components/AutoCounter.js";
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  /*
-  useEffect(감지 후 실행할 동작, 감지 할 것(리스트, 배열 o));
-  */
-
-  /* count의 변화를 감지한다. */
-  useEffect(() => {
-    console.log(`Clicked ${count} times.`);
-  }, [count]);
-
-  /* 컴포넌트가 처음 로드될 때 실행된다. */
-  useEffect(() => {
-    console.log(
-      "Component Loaded. 라이프사이클처럼 사용o. 새로고침할 때 감지. - 전역적인(초기) 이벤트를 사용할 때 활용o"
-    );
-    const handleScroll = () => {
-      console.log(window.scrollY);
-    };
-
-    // 전역 이벤트 설정 시
-    document.addEventListener("scroll", handleScroll);
-    // 반드시 해제
-    // return으로 반환한 함수는
-    // 컴포넌트가 제거 될 때 실행이 된다.
-    return () => document.removeEventListener("scroll", handleScroll);
-  }, []);
+  const inputRef = useRef();
 
   return (
     <div>
-      <div>You clicked {count} times.</div>
-      <button onClick={() => setCount(count + 1)}>+</button>
-      <div style={{ height: 1000 }}></div>
+      {/* ref - 연결 */}
+      <Input ref={inputRef} />
+      {/* current - DOM에 직접 접근 */}
+      <button onClick={() => inputRef.current.focus()}>Focus</button>
+
+      <AutoCounter />
     </div>
   );
 }
+
 export default App;
