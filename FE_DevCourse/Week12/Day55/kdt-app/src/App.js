@@ -1,33 +1,22 @@
-// 사용사례 - 페이지네이션
-// 데이터를 여러 페이지로 나눠서 일부씩 보여주는 기술
-// 한꺼번에 로드x
-// ex. 게시물 p.1, p.2, p.3
-import Pagination from "./components/Pagination";
-import Board2 from "./components/Board2";
+// useMemo
+// 최적화를 위해 사용하는 Hook
+// 1. 함수 컴포넌트는 자신의 상태가 변경될 때 리렌더링된다.
+// 2. 부모 컴포넌트로 부터 받는 prop이 변경될 때 리렌더링된다.
+// 3. 부모 컴포넌트의 상태가 변경되면 리렌더링된다.
+// 만약 연산의 속도가 느린 컴포넌트라면?
+
+// 매번 리렌더링 되지 않도록 막는다.
+// :을 추가 했을 때, sum 값은 리렌더링 되지 않도록 해보자.
 import { useState } from "react";
+import ShowSum from "./components/ShowSum";
 
 function App() {
-  const [page, setPage] = useState(0);
-  const limit = 10;
-  const offset = limit * page;
-  // const articles = [
-  //   { id: 1, title: "one" },
-  //   { id: 2, title: "two" },
-  // ];
-  const articles = new Array(100).fill().map((_, i) => ({
-    id: i,
-    title: `${i}번 게시물`,
-  }));
+  const [label, setLabel] = useState("Result");
 
   return (
     <div>
-      <Pagination
-        defaultPage={0}
-        limit={limit}
-        total={articles.length}
-        onChange={setPage}
-      />
-      <Board2 articles={articles.slice(offset, offset + limit)} />
+      <ShowSum label={label} n={1000000000} />
+      <button onClick={() => setLabel(label + ":")}>Click me!</button>
     </div>
   );
 }
