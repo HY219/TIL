@@ -1,26 +1,18 @@
-// useCallback
-// 함수가 다시 정의되는 것을 막음
-import { useCallback, useState } from "react";
-import Checkbox from "./components/Checkbox";
+// 사용자 정의 훅
+// 기존 훅 조합
+// 자주 사용하는 상태로직을 별도의 사용자 정의 훅으로 빼서 사용
+// 중복 코드 제거, 편하게 사용
+import Checkbox from "./components/Checkbox2";
+import useToggle from "./hooks/useToggle";
 function App() {
-  const [foodOn, setFoodOn] = useState(false);
-  const [clothesOn, setClothesOn] = useState(false);
-  const [shelterOn, setShelterOn] = useState(false);
+  const [on, toggle] = useToggle();
 
-  // 새로운 메모리에 정의된 함수가 onChange로 넘어가기 때문에,
-  // 함수가 재정의되어, 자식 컴포넌트(Checkbox)에 React.memo를 해줘도 리렌더링된다.
-
-  // 이를 막기위해 useCallback(함수 생성,[dependency(의존성 배열)]) 사용
-  // dependency(두번째 인자)가 변경되지 않으면 이전에 생성했던 함수(첫번째 인자, 메모리 주소 변경 x) 반환
-  const foodChange = useCallback((e) => setFoodOn(e.target.checked), []);
-  const clothesChange = useCallback((e) => setClothesOn(e.target.checked), []);
-  const shelterChange = useCallback((e) => setShelterOn(e.target.checked), []);
+  console.log(on);
 
   return (
     <div>
-      <Checkbox label="Food" on={foodOn} onChange={foodChange} />
-      <Checkbox label="Clothes" on={clothesOn} onChange={clothesChange} />
-      <Checkbox label="Shelter" on={shelterOn} onChange={shelterChange} />
+      <Checkbox checked={on} onChange={toggle} />
+      {/* <button onClick={toggle}>{on ? "True" : "False"}</button> */}
     </div>
   );
 }
