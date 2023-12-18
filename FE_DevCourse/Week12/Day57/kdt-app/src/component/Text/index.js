@@ -1,4 +1,5 @@
 import "./Text.css";
+import PropTypes from "prop-types";
 
 // delete는 예약어기 때문에, del이라는 이름으로 변경하여 사용할 수 있도록 지정
 const Text = ({
@@ -41,6 +42,18 @@ const Text = ({
       {children}
     </Tag>
   );
+};
+
+Text.propTypes = {
+  children: PropTypes.node.isRequired,
+  size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  block: PropTypes.bool,
+  paragragh: PropTypes.bool,
+  delete: PropTypes.bool,
+  code: PropTypes.bool,
+  mark: PropTypes.bool,
+  strong: PropTypes.bool,
+  color: PropTypes.bool,
 };
 
 export default Text;
