@@ -24,3 +24,22 @@ export const Default = (args) => {
     </>
   );
 };
+
+export const Size = (args) => {
+  return (
+    <>
+      <Text {...args} size="large">
+        Large
+      </Text>
+      <Text {...args} size="normal">
+        Normal
+      </Text>
+      <Text {...args} size="small">
+        Small
+      </Text>
+      <Text {...args} size={24}>
+        Custom
+      </Text>
+    </>
+  );
+};
