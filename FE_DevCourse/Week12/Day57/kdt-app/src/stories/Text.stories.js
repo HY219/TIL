@@ -9,9 +9,18 @@ export default {
     underline: { control: "boolean" },
     delete: { control: "boolean" },
     color: { control: "color" },
+    block: { control: "boolean" },
+    paragragh: { control: "boolean" },
+    mark: { control: "boolean" },
+    code: { control: "boolean" },
   },
 };
 
 export const Default = (args) => {
-  return <Text {...args}>Text</Text>;
+  return (
+    <>
+      <Text {...args}>Text</Text>
+      <Text {...args}>Text</Text>
+    </>
+  );
 };
