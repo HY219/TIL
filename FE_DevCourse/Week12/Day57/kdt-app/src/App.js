@@ -1,11 +1,7 @@
-import Box from "./component/Box";
+// import Box from "./component/Box";
 
 function App() {
-  return (
-    <div className="App">
-      <Box />
-    </div>
-  );
+  return <div className="App"></div>;
 }
 
 export default App;
