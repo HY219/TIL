@@ -1,0 +1,37 @@
+import Image from "../component/Image";
+
+export default {
+  title: "Component/Image",
+  component: Image,
+  argTypes: {
+    src: {
+      name: "src",
+      type: { name: "string", required: true },
+      defaultValue: "https://picsum.photos/200",
+      control: { type: "text" },
+    },
+    width: {
+      name: "width",
+      defaultValue: 200,
+      control: { type: "range", min: 200, max: 600 },
+    },
+    height: {
+      name: "height",
+      defaultValue: 200,
+      control: { type: "range", min: 200, max: 600 },
+    },
+    alt: {
+      name: "alt",
+      control: "string",
+    },
+    mode: {
+      defaultValue: "cover",
+      options: ["cover", "fill", "contain"],
+      control: { type: "inline-radio" },
+    },
+  },
+};
+
+export const Default = (args) => {
+  return <Image {...args}></Image>;
+};
