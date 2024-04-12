@@ -49,5 +49,5 @@
   "devDependencies": {
     "@types/react-router-dom": "^5.3.3"
   },
-  "homepage": "https://github.com/HY219/TIL/tree/React_JS_Master_Challenge"
+  "homepage": "https://github.com/HY219/TIL/tree/React_JS_Master_Challenge/Ch5/crypto_tracker"
 }
