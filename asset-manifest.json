@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/HY219/TIL/tree/React_JS_Master_Challenge/static/js/main.eb19cda0.js",
-    "index.html": "/HY219/TIL/tree/React_JS_Master_Challenge/index.html",
-    "main.eb19cda0.js.map": "/HY219/TIL/tree/React_JS_Master_Challenge/static/js/main.eb19cda0.js.map"
+    "main.js": "/HY219/TIL/tree/React_JS_Master_Challenge/Ch5/crypto_tracker/static/js/main.e0776ad0.js",
+    "index.html": "/HY219/TIL/tree/React_JS_Master_Challenge/Ch5/crypto_tracker/index.html",
+    "main.e0776ad0.js.map": "/HY219/TIL/tree/React_JS_Master_Challenge/Ch5/crypto_tracker/static/js/main.e0776ad0.js.map"
   },
   "entrypoints": [
-    "static/js/main.eb19cda0.js"
+    "static/js/main.e0776ad0.js"
   ]
 }
