@@ -1,12 +1,7 @@
 function solution(str) {
   let answer;
 
-  for (i in str) {
-    if (str[i] === "A") {
-      str[i].replace("A", "#");
-    }
-  }
-  answer = str;
+  answer = str.replaceAll("A", "#"); // str.replace(/A/g, "#") // 정규표현식을 사용할 수 있다.
 
   return answer;
 }
