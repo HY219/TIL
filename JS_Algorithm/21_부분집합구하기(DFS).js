@@ -14,4 +14,4 @@ function solution(n) {
 
 // 부분집합 2^n-1
 
-console.log(solution(3));
+console.log(solution(3)); // wrong solution
