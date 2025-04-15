@@ -1,7 +1,7 @@
 function solution(input) {
   const lines = input.trim().split("\n");
   const n = lines[0];
-  const arr = lines[1].split(" ");
+  const arr = lines[1].split(" ").map(Number);
 
   const tmp = [arr[0]];
 
