@@ -2,7 +2,7 @@ function solution(input) {
   let string = input.split(" ")[0];
   let text = input.split(" ")[1];
   let answer = [];
-  let p = 0;
+  let p = 0; // p의 초기값을 0으로 두면 오류 발생. 큰 수로 두어야함.
 
   for (let i = 0; i < string.length; i++) {
     if (string[i] !== text) {
@@ -13,6 +13,7 @@ function solution(input) {
       answer.push(p);
     }
   }
+  console.log(answer);
   p = 0;
   for (let i = string.length - 1; i >= 0; i--) {
     if (string[i] !== text) {
@@ -24,13 +25,14 @@ function solution(input) {
       p = 0;
     }
   }
+  console.log(answer);
 
   answer = answer.join(" ");
 
   return answer;
 }
 
-const input = `teachermode e`;
+const input = `tteachermode e`;
 
 console.log(solution(input));
 

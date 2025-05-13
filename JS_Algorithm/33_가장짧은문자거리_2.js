@@ -37,9 +37,12 @@ function solution(input) {
   return answer;
 }
 
-const input = `teachermode e`;
+const input = `tteachermode e`;
 
 console.log(solution(input));
 
 // 복잡하게 품.
 // Math.floor((arr[i].length-1)/2) 이용
+
+// 오류 발생
+// 첫번째 또는 마지막 값이 1이 아닐 수 있음. (이 경우를 고려하지 않음)

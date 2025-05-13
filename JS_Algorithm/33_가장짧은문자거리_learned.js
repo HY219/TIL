@@ -30,6 +30,6 @@ function solution(input) {
   return answer;
 }
 
-const input = `teachermode e`;
+const input = `tteachermode e`;
 
 console.log(solution(input));
