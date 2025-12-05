@@ -16,3 +16,5 @@ class HelloService:
         titles = [post.title for post in posts]
         return "게시글 목록: " + ", ".join(titles)
 
+    def get_all_posts_for_api(self):
+        return self.post_repo.get_all_posts()
