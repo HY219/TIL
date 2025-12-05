@@ -16,3 +16,13 @@ class PostRepository:
         단일 게시글 조회, 없으면 None 반환
         """
         return Post.objects.filter(id=post_id).first()
+    
+    def update_post(self, post: Post, data: dict) -> Post:
+        """
+        기존 POST 객체(post)의 data에 들어있는 값만 덮어씌우고 저장
+        data 예: {"title": "...", "content": "..."}
+        """
+        for field, value in data.items():
+            setattr(post, field, value) # post.title = ..., post.content = ... 이런 식
+        post.save() # DB에 적용 # UPDATE 쿼리
+        return post

@@ -30,3 +30,14 @@ class HelloService:
         단일 게시글 조회, 없으면 None 반환
         """
         return self.post_repo.get_post_by_id(post_id)
+    
+    def update_post(self, post_id: int, validated_data: dict):
+        """
+        게시글 수정. 없으면 None 반환, 있으면 수정된 Post 반환
+        """
+        post = self.post_repo.get_post_by_id(post_id)
+        if post is None:
+            return None
+        
+        updated_post = self.post_repo.update_post(post, validated_data)
+        return updated_post
