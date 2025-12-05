@@ -18,3 +18,15 @@ class HelloService:
 
     def get_all_posts_for_api(self):
         return self.post_repo.get_all_posts()
+    
+    def create_post(self, validated_data):
+        """
+        validated_data = {"title": "...", "content": "..."}
+        """
+        return self.post_repo.create_post(validated_data)
+    
+    def get_post_detail(self, post_id: int):
+        """
+        단일 게시글 조회, 없으면 None 반환
+        """
+        return self.post_repo.get_post_by_id(post_id)

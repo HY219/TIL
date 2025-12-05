@@ -17,10 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from test_app.views import index
-from test_app.apis.post_api import PostListAPI
+from test_app.apis.post_api import PostListAPI, PostDetailAPI
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index), # 루트 URL -> index view
     path('api/posts/', PostListAPI.as_view()), # GET /api/posts/ API # 클래스 기반 자체는 view로 사용 불가
+    path('api/posts/<int:post_id>/', PostDetailAPI.as_view())
 ]
