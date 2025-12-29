@@ -41,3 +41,14 @@ class HelloService:
         
         updated_post = self.post_repo.update_post(post, validated_data)
         return updated_post
+    
+    def delete_post(self, post_id: int) -> bool:
+        """
+        게시글 삭제. 삭제 성공하면 True, 대상이 없으면 False 반환.
+        """
+        post = self.post_repo.get_post_by_id(post_id)
+        if post is None:
+            return False
+        
+        self.post_repo.delete_post(post)
+        return True

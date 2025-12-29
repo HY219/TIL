@@ -26,3 +26,9 @@ class PostRepository:
             setattr(post, field, value) # post.title = ..., post.content = ... 이런 식
         post.save() # DB에 적용 # UPDATE 쿼리
         return post
+
+    def delete_post(self, post: Post) -> None:
+        """
+        기존 Post 객체를 DB에서 삭제
+        """
+        post.delte()

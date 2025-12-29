@@ -88,3 +88,20 @@ class PostDetailAPI(APIView):
             return Response(output_serializer.data, status=status.HTTP_200_OK)
         
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    def delete(self, request, post_id: int):
+        """
+        DELETE /api/posts/<post_id>/
+        해당 게시글 삭제
+        """
+        service = HelloService()
+        deleted = service.get_post_detail(post_id)
+
+        if not deleted:
+            return Response(
+                {"detail": "해당 게시글을 찾을 수 없습니다."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+     
+        # 삭제 성공시 보통 204 No Content를 많이 사용
+        return Response(status=status.HTTP_204_NO_CONTENT)
